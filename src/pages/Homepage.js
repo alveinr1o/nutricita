@@ -1,8 +1,8 @@
 import React from "react";
+import Navbar from "../components/Navbar.js";
+import AskCitaButton from "../components/AskCita.js"
+
 import {
-  FaBars,
-  FaSearch,
-  FaUserCircle,
   FaHome,
   FaUser,
   FaCheckCircle,
@@ -16,9 +16,8 @@ import {
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import logo from "../assets/logo.png";   
+import { Link } from "react-router-dom";
 import bgImage from "../assets/background.png";
-import bgHero from "../assets/hero_bg.png";
 import bgBerita from "../assets/bg_berita.png"
 import petaSPPG from "../assets/peta_sppg.jpg"
 import petaPM from "../assets/peta_penerima_manfaat.jpg";
@@ -29,7 +28,6 @@ import card3 from "../assets/card3.png";
 import galeri1 from "../assets/galeri2.png";
 import galeri2 from "../assets/galeri3.png";
 import galeri3 from "../assets/galeri4.png"; 
-import askCitaRobot from "../assets/askcita.png";
 
 const menuItems = [
   { label: "Beranda", icon: <FaHome /> },
@@ -47,70 +45,23 @@ const newsData = [
       "Pemerintah Fokus Rekrut Masyarakat Miskin dan Ekstrem untuk Pekerja SPPG sebagai Langkah Cegah Kemiskinan",
     image: bgBerita,
     tag: "NutriCita Updates",
+    link: "/updates",
   },
   {
     title:
       "Pemerintah Fokus Rekrut Masyarakat Miskin dan Ekstrem untuk Pekerja SPPG sebagai Langkah Cegah Kemiskinan",
     image: bgBerita,
     tag: "NutriCita Updates",
+    link: "/updates",
   },
   {
     title:
       "Pemerintah Fokus Rekrut Masyarakat Miskin dan Ekstrem untuk Pekerja SPPG sebagai Langkah Cegah Kemiskinan",
     image: bgBerita,
     tag: "NutriCita Updates",
+    link: "/updates",
   },
 ];
-
-const Navbar = () => {
-  return (
-    <nav
-      className="fixed top-0 left-0 w-full px-4 py-2 shadow-xl z-50"
-      style={{
-        backgroundColor: "#F8DF36",
-        color: "#04847F",
-        boxShadow: "0 8px 15px rgba(0, 0, 0, 0.1)",
-      }}
-    >
-      {/* Wrapper isi navbar */}
-      <div className="mx-10 flex items-center justify-between rounded-lg">
-        {/* Kiri: Menu + Logo */}
-        <div className="flex items-center space-x-3">
-          <FaBars className="text-2xl cursor-pointer" />
-          <img
-            src={logo}
-            alt="NutriCita Logo"
-            className="h-10 w-10 object-contain"
-          />
-          <span className="font-bold text-3xl">NutriCita</span>
-        </div>
-
-        {/* Kanan: Teks slogan + Search bar + Tombol bahasa + User */}
-        <div className="flex items-center gap-6">
-          <p className="text-2xl italic font-semibold whitespace-nowrap">
-            Gizi Merata, Indonesia Sejahtera
-          </p>
-
-          <div className="flex items-center bg-white rounded-full px-3 py-1 w-64">
-            <FaSearch className="mr-2" style={{ color: "#04847F" }} />
-            <input
-              type="text"
-              placeholder="Cari.."
-              className="flex-grow outline-none text-sm"
-              style={{ color: "#04847F" }}
-            />
-          </div>
-
-          <button className="bg-green-500 text-white px-3 py-1 rounded-full text-sm">
-            ID ▼
-          </button>
-
-          <FaUserCircle className="text-white text-3xl cursor-pointer" />
-        </div>
-      </div>
-    </nav>
-  );
-};
 
 const HeroSection = () => {
   const settings = {
@@ -127,12 +78,28 @@ const HeroSection = () => {
     <div
       className="relative w-full overflow-hidden flex flex-col text-white pt-10"
       style={{
-        backgroundImage: `url(${bgHero})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
+        background: "linear-gradient(to right, #d6f6f3, #00A9A2)", // gradient utama
       }}
     >
-      <div className="mx-40 my-6">
+      {/* Kotak Kiri Bawah */}
+      <div
+        className="absolute -bottom-10 left-10 w-48 h-48 rounded-2xl"
+        style={{
+          background: "linear-gradient(to right, #03847eff, #d6f6f3)",
+          opacity: 0.4,
+        }}
+      ></div>
+
+      {/* Kotak Kanan Atas */}
+      <div
+        className="absolute top-28 right-10 w-48 h-48 rounded-2xl"
+        style={{
+          background: "linear-gradient(to right, #006863ff, #d6f6f3)",
+          opacity: 0.4,
+        }}
+      ></div>
+
+      <div className="mx-40 my-6 relative z-10">
         {/* Bagian Menu Navigasi */}
         <div className="flex items-center space-x-6 py-3">
           {menuItems.map((item, idx) => (
@@ -155,7 +122,7 @@ const HeroSection = () => {
 
         {/* Tulisan Berjalan */}
         <div
-          className="mt-3 flex items-center rounded"
+          className="mt-3 flex items-center"
           style={{ backgroundColor: "#FCEFBB", color: "#3B3B3B" }}
         >
           <div
@@ -180,21 +147,23 @@ const HeroSection = () => {
           <Slider {...settings}>
             {newsData.map((news, idx) => (
               <div key={idx}>
-                <div
-                  className="relative w-full h-64 rounded-lg overflow-hidden flex items-center"
-                  style={{
-                    backgroundImage: `url(${news.image})`,
-                    backgroundSize: "cover",
-                    backgroundPosition: "center",
-                  }}
-                >
-                  <div className="absolute inset-0 flex flex-col justify-center p-6 text-white bg-black/40">
-                    <p className="text-sm mb-2">{news.tag}</p>
-                    <h2 className="text-2xl font-bold leading-snug max-w-lg">
-                      {news.title}
-                    </h2>
+                <Link to={news.link}>
+                  <div
+                    className="relative w-full h-64 rounded-lg overflow-hidden flex items-center"
+                    style={{
+                      backgroundImage: `url(${news.image})`,
+                      backgroundSize: "cover",
+                      backgroundPosition: "center",
+                    }}
+                  >
+                    <div className="absolute inset-0 flex flex-col justify-center p-6 text-white bg-black/40">
+                      <p className="text-sm mb-2">{news.tag}</p>
+                      <h2 className="text-2xl font-bold leading-snug max-w-lg">
+                        {news.title}
+                      </h2>
+                    </div>
                   </div>
-                </div>
+                </Link>
               </div>
             ))}
           </Slider>
@@ -264,9 +233,12 @@ const DashboardSection = () => {
   return (
     <div className="flex flex-col lg:flex-row items-stretch mx-40 my-6 gap-6">
       {/* Kiri */}
-      <div className="flex flex-col gap-6 w-full lg:w-1/2">
+      <div className="flex flex-col gap-1 w-full lg:w-1/2">
         {/* Kiri atas - Dashboard Capaian */}
-        <div className="bg-white rounded-xl shadow-lg p-6 flex gap-3">
+        <div
+          className="rounded-xl shadow-lg p-6 flex gap-3"
+          style={{ backgroundColor: "#F6FFFE" }}
+        >
           {/* Kiri - Judul */}
           <div className="w-1/3 flex justify-center items-center h-full">
             <h2 className="text-start leading-snug text-sm">
@@ -298,16 +270,11 @@ const DashboardSection = () => {
                 </div>
                 <div className="text-center">
                   <p className="text-lg font-extrabold text-[#04847F]">2.320</p>
-                  <p className="font-semibold text-[#04847F]">
-                    SPPG <br />
-                    yang beroperasi
-                  </p>
+                  <p className="font-semibold text-[#04847F]">Beroperasi</p>
                 </div>
                 <div className="text-center">
                   <p className="text-lg font-extrabold text-red-600">202</p>
-                  <p className="font-semibold text-red-600">
-                    SPPG yang <br /> belum beroperasi
-                  </p>
+                  <p className="font-semibold text-red-600">Belum</p>
                 </div>
               </div>
             </div>
@@ -315,7 +282,7 @@ const DashboardSection = () => {
               <img
                 src={petaSPPG}
                 alt="Peta SPPG"
-                className="max-h-36 object-contain"
+                className="w-full h-auto object-contain"
               />
             </div>
           </div>
@@ -340,7 +307,7 @@ const DashboardSection = () => {
               <img
                 src={petaPM}
                 alt="Peta Penerima Manfaat"
-                className="max-h-36 object-contain"
+                className="w-full h-auto object-contain"
               />
             </div>
           </div>
@@ -401,7 +368,7 @@ const DashboardSection = () => {
       <div className="w-full lg:w-1/2">
         {/* Judul */}
         <h2
-          className="text-lg font-bold text-center mb-4"
+          className="text-2xl font-bold text-center mb-4"
           style={{ color: "#3B3B3B" }}
         >
           NutriCita Gallery
@@ -493,24 +460,6 @@ const DashboardSection = () => {
         </div>
       </div>
     </div>
-  );
-};
-
-const AskCitaButton = () => {
-  return (
-    <button
-      className="fixed bottom-6 right-2 p-0 bg-transparent z-50"
-      style={{ border: "none" }}
-      onClick={() => {
-        console.log("AskCita Bot clicked!");
-      }}
-    >
-      <img
-        src={askCitaRobot}
-        alt="AskCita Bot"
-        className="w-48 h-48 object-contain"
-      />
-    </button>
   );
 };
 
