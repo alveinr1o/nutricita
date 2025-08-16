@@ -3,7 +3,6 @@ import Navbar from "../components/NavbarLogin.js";
 import AskCita from "../components/AskCita.js";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import logo from "../assets/logo.png";   
 import bgImage from "../assets/background.png";
 import bgHero from "../assets/hero_bg2.png";
 import iconWelcome from "../assets/iconWelcome.png";
@@ -27,7 +26,6 @@ import modul1 from "../assets/modul1.png";
 import modul2 from "../assets/modul2.png";
 import modul3 from "../assets/modul3.png";
 import tutorialImg from "../assets/tutorial.png";
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 const HeroSection = () => {
   return (
