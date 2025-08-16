@@ -4,8 +4,11 @@ import {
   FaUserCircle,
 } from "react-icons/fa";
 import logo from "../assets/logo.png";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
+  const navigate = useNavigate();
+
   return (
     <nav
       className="fixed top-0 left-0 w-full px-4 py-2 shadow-xl z-50"
@@ -48,7 +51,10 @@ const Navbar = () => {
             ID ▼
           </button>
 
-          <FaUserCircle className="text-white text-3xl cursor-pointer" />
+          <FaUserCircle
+            className="text-white text-3xl cursor-pointer"
+            onClick={() => navigate("/AfterLogin")}
+          />
         </div>
       </div>
     </nav>

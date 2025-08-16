@@ -26,6 +26,7 @@ import modul1 from "../assets/modul1.png";
 import modul2 from "../assets/modul2.png";
 import modul3 from "../assets/modul3.png";
 import tutorialImg from "../assets/tutorial.png";
+import { useNavigate } from "react-router-dom";
 
 const HeroSection = () => {
   return (
@@ -216,6 +217,7 @@ const RightSidebar = () => {
   );
 
   const rekomendasiImages = [foto1, foto2, foto3, foto4, foto5, foto6];
+  const navigate = useNavigate();
 
   return (
     <div className="w-full max-w-2xl flex flex-col gap-4 mt-[-40px]">
@@ -230,7 +232,8 @@ const RightSidebar = () => {
           <div className="flex items-center gap-2 mb-4">
             <ArrowLeft />
             <div className="flex-1 bg-gray-100 border border-black rounded px-2 py-1 text-xs leading-snug">
-              Program Makan Bergizi Gratis : Analisis Kritis Transformasi Pendidikan Indonesia Menuju Generasi Emas 2045
+              Program Makan Bergizi Gratis : Analisis Kritis Transformasi
+              Pendidikan Indonesia Menuju Generasi Emas 2045
             </div>
             <ArrowRight />
           </div>
@@ -268,7 +271,7 @@ const RightSidebar = () => {
               "Pelatihan Daring",
               "Pelatihan Luring",
               "Sertifikasi HACCP",
-              "Sertifikasi Food Hand."
+              "Sertifikasi Food Hand.",
             ].map((item, idx) => (
               <div
                 key={idx}
@@ -277,7 +280,10 @@ const RightSidebar = () => {
                 <span className="text-sm">{item}</span>
                 <div className="flex items-center gap-1 ml-auto">
                   <span className="text-[10px]">Klik Disini</span>
-                  <button className="bg-yellow-400 text-xs h-6 px-2 rounded flex items-center hover:bg-yellow-500 transition">
+                  <button
+                    className="bg-yellow-400 text-xs h-6 px-2 rounded flex items-center hover:bg-yellow-500 transition"
+                    onClick={() => navigate("/nutrischool")}
+                  >
                     <div className="w-0 h-0 border-l-[5px] border-l-transparent border-r-[5px] border-r-transparent border-t-[6px] border-t-black"></div>
                   </button>
                 </div>
