@@ -20,7 +20,7 @@ import { Link } from "react-router-dom";
 import bgImage from "../assets/background.png";
 import bgBerita from "../assets/bg_berita.png"
 import petaSPPG from "../assets/peta_sppg.jpg"
-import petaPM from "../assets/peta_penerima_manfaat.jpg";
+import petaPM from "../assets/peta_penerima_manfaat.png";
 import imgGaleriUtama from "../assets/galeri1.png";
 import card1 from "../assets/card1.png";
 import card2 from "../assets/card2.png";
